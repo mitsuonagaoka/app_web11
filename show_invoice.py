@@ -37,6 +37,8 @@ from reportlab.pdfbase.ttfonts import TTFont
 # import os
 
 
+
+
 def show_invoice43():
     # title表示する
     st.title('月単位請求項目表示4')
@@ -115,10 +117,19 @@ def show_invoice43():
         img.show()
 
         ###### Invoice_issue を発行######################################################################
+        # # MSGothic フォントの絶対パスを指定
+        # font_file_path = 'C:\\Windows\\Fonts\\msgothic.ttc'  # または 'C:\\Windows\\Fonts\\msgothic.ttf'
+        # # フォントを登録
+        # pdfmetrics.registerFont(TTFont('CustomFont', font_file_path))
+
         # MSGothic フォントの絶対パスを指定
         font_file_path = 'C:\\Windows\\Fonts\\msgothic.ttc'  # または 'C:\\Windows\\Fonts\\msgothic.ttf'
+
         # フォントを登録
-        pdfmetrics.registerFont(TTFont('CustomFont', font_file_path))
+        pdfmetrics.registerFont(TTFont('MSGothic', font_file_path))
+
+
+
 
         # PDFを作成 # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
         today = date.today()
