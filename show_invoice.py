@@ -10,6 +10,9 @@ from reportlab.lib.pagesizes import portrait, A4
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 
+import qrcode
+
+
 def show_invoice43():
     # title表示する
     st.title('月単位請求項目表示4')
