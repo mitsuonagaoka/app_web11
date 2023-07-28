@@ -7,7 +7,8 @@ from PIL import Image
 from datetime import date
 
 from reportlab.lib.pagesizes import portrait, A4
-
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 
 def show_invoice43():
     # title表示する
