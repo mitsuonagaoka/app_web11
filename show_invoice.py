@@ -6,6 +6,8 @@ import streamlit as st
 from PIL import Image
 from datetime import date
 
+from reportlab.lib.pagesizes import portrait, A4
+
 
 def show_invoice43():
     # title表示する
