@@ -1,17 +1,40 @@
 # streamlit run show_invoice.py
 
+# import sqlite3
+# import pandas as pd
+# import streamlit as st
+# from PIL import Image
+# from datetime import date
+# from reportlab.pdfbase.cidfonts import UnicodeCIDFont
+# import qrcode
+#
+# from reportlab.pdfgen import canvas
+# from reportlab.lib.pagesizes import portrait, A4
+# from reportlab.pdfbase import pdfmetrics
+# from reportlab.pdfbase.ttfonts import TTFont
+
 import sqlite3
 import pandas as pd
 import streamlit as st
 from PIL import Image
+# import datetime
 from datetime import date
-from reportlab.pdfbase.cidfonts import UnicodeCIDFont
-import qrcode
-
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import portrait, A4
+# from reportlab.lib.utils import ImageReader
 from reportlab.pdfbase import pdfmetrics
+# from reportlab.pdfbase.cidfonts import UnicodeCIDFont
+# from contextlib import closing
+# import plotly.express as px
+# import base64
+import qrcode
+# from pdf2image import convert_from_path
 from reportlab.pdfbase.ttfonts import TTFont
+# import pytesseract
+
+# import fitz  # PyMuPDFをインポート
+# import tempfile
+# import os
 
 
 def show_invoice43():
@@ -102,8 +125,11 @@ def show_invoice43():
         today_str_cnv = today.strftime('%Y%m%d')
         cv = canvas.Canvas(f'Invoice_{today_str_cnv}.pdf', pagesize=portrait(A4))
 
-
-
+        # # PDFを作成
+        # c = canvas.Canvas('output.pdf', pagesize=A4)
+        # c.setFont('CustomFont', 12)  # フォント名を指定
+        # c.drawString(100, 100, 'Hello, World!')
+        # c.save()
 
 
 
