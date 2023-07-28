@@ -5,11 +5,11 @@ import pandas as pd
 import streamlit as st
 from PIL import Image
 from datetime import date
+from reportlab.pdfgen import canvas
 
 from reportlab.lib.pagesizes import portrait, A4
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
-
 import qrcode
 
 
@@ -240,4 +240,6 @@ def show_invoice43():
 
         # Streamlitにファイルの保存を通知する
         st.write('保存ファイル')
-        st.write(f"PDF file saved at: {pdf_path}")
+        # st.write(f"PDF file saved at: {pdf_path}")
+
+show_invoice43()
