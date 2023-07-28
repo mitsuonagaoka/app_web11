@@ -117,19 +117,11 @@ def show_invoice43():
         img.show()
 
         ###### Invoice_issue を発行######################################################################
-        # # MSGothic フォントの絶対パスを指定
-        # font_file_path = 'C:\\Windows\\Fonts\\msgothic.ttc'  # または 'C:\\Windows\\Fonts\\msgothic.ttf'
-        # # フォントを登録
-        # pdfmetrics.registerFont(TTFont('CustomFont', font_file_path))
-
         # MSGothic フォントの絶対パスを指定
         font_file_path = 'C:\\Windows\\Fonts\\msgothic.ttc'  # または 'C:\\Windows\\Fonts\\msgothic.ttf'
 
         # フォントを登録
         pdfmetrics.registerFont(TTFont('MSGothic', font_file_path))
-
-
-
 
         # PDFを作成 # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
         today = date.today()
@@ -174,15 +166,12 @@ def show_invoice43():
         font_size1 = 20
         font_size2 = 14
         font_size3 = 10
-        # cv.setFont('HeiseiKakuGo-W5', font_size2)
         cv.setFont('MSGothic', font_size2)
 
         # 表題欄 (x座標, y座標, 文字)を指定
-        # cv.setFont('HeiseiKakuGo-W5', font_size1)
         cv.setFont('MSGothic', font_size1)
         cv.drawString(50, 760, 'Invoice(期間別[月/日/任意]請求書)')
 
-        # cv.setFont('HeiseiKakuGo-W5', font_size2)
         cv.setFont('MSGothic', font_size2)
         cv.drawString(450, 760, f'Inv- {today_str_cnv}')
 
@@ -194,9 +183,6 @@ def show_invoice43():
         conn = sqlite3.connect(db_name)
         c = conn.cursor()
 
-        # query_totalクエリを実行して、データフレームに変換 qd_会社id
-        # dd_会社ID = '1'
-        # Comid_sql = conn.execute('SELECT * FROM t_顧客Data WHERE 会社ID = ?', (dd_会社ID,)).fetchall()
         qd_会社id = '1'
         Comid_sql = conn.execute('SELECT * FROM t_顧客Data WHERE 会社ID = ?', (qd_会社id,)).fetchall()
 
