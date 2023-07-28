@@ -5,12 +5,13 @@ import pandas as pd
 import streamlit as st
 from PIL import Image
 from datetime import date
-from reportlab.pdfgen import canvas
-
-from reportlab.lib.pagesizes import portrait, A4
-from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 import qrcode
+
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import portrait, A4
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 
 
 def show_invoice43():
@@ -91,24 +92,46 @@ def show_invoice43():
         img.show()
 
         ###### Invoice_issue を発行######################################################################
-        # 縦型A4のCanvasを準備
-        cv = canvas.Canvas('temp_format00.pdf', pagesize=portrait(A4))
+        # MSGothic フォントの絶対パスを指定
+        font_file_path = 'C:\\Windows\\Fonts\\msgothic.ttc'  # または 'C:\\Windows\\Fonts\\msgothic.ttf'
+        # フォントを登録
+        pdfmetrics.registerFont(TTFont('CustomFont', font_file_path))
 
-        # フォント登録
-        pdfmetrics.registerFont(UnicodeCIDFont('HeiseiKakuGo-W5'))
-
-        # フォントサイズ定義
-        # font_size1 = 20
-        font_size2 = 14
-        cv.setFont('HeiseiKakuGo-W5', font_size2)
-
-        # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
+        # PDFを作成 # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
         today = date.today()
         today_str_cnv = today.strftime('%Y%m%d')
         cv = canvas.Canvas(f'Invoice_{today_str_cnv}.pdf', pagesize=portrait(A4))
 
-        # フォント登録
-        pdfmetrics.registerFont(UnicodeCIDFont('HeiseiKakuGo-W5'))
+
+
+
+
+
+        # 縦型A4のCanvasを準備
+        # cv = canvas.Canvas('temp_format00.pdf', pagesize=portrait(A4))
+        #
+        # # フォント登録
+        # pdfmetrics.registerFont(UnicodeCIDFont('HeiseiKakuGo-W5'))
+
+        # フォントサイズ定義
+        # font_size1 = 20
+        # font_size2 = 14
+        # cv.setFont('HeiseiKakuGo-W5', font_size2)
+
+        # # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
+        # today = date.today()
+        # today_str_cnv = today.strftime('%Y%m%d')
+        # cv = canvas.Canvas(f'Invoice_{today_str_cnv}.pdf', pagesize=portrait(A4))
+
+        # # フォント登録
+        # pdfmetrics.registerFont(UnicodeCIDFont('HeiseiKakuGo-W5'))
+        #
+        # # フォントファイルの絶対パスを指定
+        # font_file_path = '/path/to/font_file.ttf'
+        # # フォントを登録
+        # pdfmetrics.registerFont(TTFont('CustomFont', font_file_path))
+
+
 
         # フォントサイズ定義
         font_size1 = 20
