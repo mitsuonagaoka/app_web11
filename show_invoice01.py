@@ -2,28 +2,20 @@
 
 import os
 import sqlite3
-# import datetime
 from datetime import date
 
 import pandas as pd
-# from reportlab.pdfbase.cidfonts import UnicodeCIDFont
-# from contextlib import closing
 import qrcode
 import streamlit as st
 from PIL import Image
 from reportlab.lib.pagesizes import A4
-# from reportlab.lib.utils import ImageReader
 from reportlab.pdfbase import pdfmetrics
-# from pdf2image import convert_from_path
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 
 
-# import fitz  # PyMuPDFをインポート
-# import tempfile
-
 # PDFを作成する関数
-def create_pdf(file_path):
+def create_pdf(file_path):      # invoice_make43()
     # Canvasオブジェクトを作成（A4サイズ）
     cv = canvas.Canvas(file_path, pagesize=A4)
 
@@ -55,8 +47,6 @@ def create_pdf(file_path):
             """
         c.execute(sql, (start_date.strftime('%Y/%m/%d'), end_date.strftime('%Y/%m/%d')))
 
-        # SELECT COUNT(*) FROM t_出荷Data
-
         # 結果をデータフレームに変換して表示
         df = pd.DataFrame(c.fetchall(), columns=['品番', '名称', '単価', '出荷数', '出荷日', 'Tax', '出荷金額'])
         st.write(df)
@@ -70,9 +60,6 @@ def create_pdf(file_path):
         dd_請求金額 = int(dd_出荷合計) * 1.1
         dd_消費税額 = int(dd_出荷合計) * 0.1
 
-        # st.write(f'10%選択しました。消費税額：{int(dd_消費税額):,} 円です。')
-        # st.write(f'10%選択しました。請求金額：{int(dd_請求金額):,} 円です。')
-
         # カーソルを作成
         cursor = conn.cursor()
 
@@ -85,7 +72,6 @@ def create_pdf(file_path):
 
         # データベースとの接続を閉じる
         conn.close()
-
 
         ###### Invoice帳票 And QRコードを作成 ######################################################################
         qr = qrcode.QRCode(
@@ -111,13 +97,6 @@ def create_pdf(file_path):
 
         # フォントを登録
         pdfmetrics.registerFont(TTFont('MSGothic', font_file_path))
-
-        # PDFを作成 # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
-        # today = date.today()
-        # today_str_cnv = today.strftime('%Y%m%d')
-        #
-        # file_name = f'Invoice_{today_str_cnv}.pdf'
-        # cv = canvas.Canvas(file_name, pagesize=portrait(A4))
 
         # フォントサイズ定義
         font_size1 = 20
@@ -172,7 +151,6 @@ def create_pdf(file_path):
         cv.line(95, 562, 520, 562)
         cv.line(45, 755, 560, 755)
 
-        # cv.setFont('HeiseiKakuGo-W5', font_size3)
         cv.setFont('MSGothic', font_size3)
 
         # ヘッター欄
@@ -255,7 +233,5 @@ file_path = os.path.join(output_directory, file_name)
 # PDFを作成して保存
 create_pdf(file_path)
 
-
-# show_invoice43()
 
 # streamlit run show_invoice01.py

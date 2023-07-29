@@ -13,10 +13,41 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 
+import fitz  # PyMuPDFをインポート
+import tempfile
+
+
+# フォントの登録
+pdfmetrics.registerFont(TTFont('MSGothic', 'msgothic.ttc'))
+
+# データベースに接続
+db_name = './data/product30.db'
+conn = sqlite3.connect(db_name)
+c = conn.cursor()
+
+menu = ["総合生産管理", "受注管理1", "出荷管理2", "在庫管理3", "注文管理4", "顧客管理5"]
+submenu1 = ["受注1検索0", "受注1追加1", "受注1編集2", "受注1削除3"]
+submenu2 = ["出荷2検索0", "出荷2追加1", "出荷2編集2", "出荷2削除3", "出荷2金額表示4"]
+submenu3 = ["在庫3検索0", "在庫3追加1", "在庫3編集2", "在庫3削除3"]
+submenu4 = ["注文4検索0_品番_注番", "注文4追加1_日付", '期間別請求書表示', 'invoice表示']
+submenu5 = ["顧客5検索0", "顧客5追加1", "顧客5編集2", "顧客5削除3"]
+
+# サイドバーにメニューを表示
+choice = st.sidebar.selectbox("Menu", menu)
+
 
 # PDFを作成する関数
-def create_pdf(file_path):
+
+def invoice_make43():
     # Canvasオブジェクトを作成（A4サイズ）
+    output_directory = "C:\\Users\\marom\\Invoice"
+
+    # PDFを作成 # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
+    today = date.today()
+    today_str_cnv = today.strftime('%Y%m%d')
+    file_name = f'Invoice_{today_str_cnv}.pdf'
+
+    file_path = os.path.join(output_directory, file_name)
     cv = canvas.Canvas(file_path, pagesize=A4)
 
     # ここにPDFの内容を追加するコードを記述
@@ -47,8 +78,6 @@ def create_pdf(file_path):
             """
         c.execute(sql, (start_date.strftime('%Y/%m/%d'), end_date.strftime('%Y/%m/%d')))
 
-        # SELECT COUNT(*) FROM t_出荷Data
-
         # 結果をデータフレームに変換して表示
         df = pd.DataFrame(c.fetchall(), columns=['品番', '名称', '単価', '出荷数', '出荷日', 'Tax', '出荷金額'])
         st.write(df)
@@ -62,9 +91,6 @@ def create_pdf(file_path):
         dd_請求金額 = int(dd_出荷合計) * 1.1
         dd_消費税額 = int(dd_出荷合計) * 0.1
 
-        # st.write(f'10%選択しました。消費税額：{int(dd_消費税額):,} 円です。')
-        # st.write(f'10%選択しました。請求金額：{int(dd_請求金額):,} 円です。')
-
         # カーソルを作成
         cursor = conn.cursor()
 
@@ -77,7 +103,6 @@ def create_pdf(file_path):
 
         # データベースとの接続を閉じる
         conn.close()
-
 
         ###### Invoice帳票 And QRコードを作成 ######################################################################
         qr = qrcode.QRCode(
@@ -115,6 +140,9 @@ def create_pdf(file_path):
         cv.drawString(50, 760, 'Invoice(期間別[月/日/任意]請求書)')
 
         cv.setFont('MSGothic', font_size2)
+
+        # 保存先のディレクトリパス
+        # output_directory = "C:\\Users\\marom\\Invoice"
         cv.drawString(450, 760, f'Inv- {today_str_cnv}')
 
         # 画像挿入(画像パス、始点x、始点y、幅、高さ) watermark.jpg
@@ -157,7 +185,6 @@ def create_pdf(file_path):
         cv.line(95, 562, 520, 562)
         cv.line(45, 755, 560, 755)
 
-        # cv.setFont('HeiseiKakuGo-W5', font_size3)
         cv.setFont('MSGothic', font_size3)
 
         # ヘッター欄
@@ -226,19 +253,57 @@ def create_pdf(file_path):
         # Canvasを保存してファイルを作成
         cv.save()
 
-# 保存先のディレクトリパス
-output_directory = "C:\\Users\\marom\\Invoice"
+def pdf_to_images(file_path):
+    images = []
+    with fitz.open(file_path) as pdf_document:
+        for page_num in range(pdf_document.page_count):
+            page = pdf_document.load_page(page_num)
+            pixmap = page.get_pixmap()
+            img = Image.frombytes("RGB", [pixmap.width, pixmap.height], pixmap.samples)
+            images.append(img)
+    return images
 
-# PDFを作成 # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
-today = date.today()
-today_str_cnv = today.strftime('%Y%m%d')
-file_name = f'Invoice_{today_str_cnv}.pdf'
+def invoice_show44():
+    st.title("PDFファイルビューア")
 
-# ファイルのフルパス
-file_path = os.path.join(output_directory, file_name)
+    uploaded_file = st.file_uploader("PDFファイルをアップロードしてください", type=["pdf"])
 
-# PDFを作成して保存
-create_pdf(file_path)
+    if uploaded_file:
+        # 一時ファイルをディスクに保存してからパスを取得
+        with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+            temp_file.write(uploaded_file.read())
+            temp_file_path = temp_file.name
+
+        file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type, "FileSize": uploaded_file.size}
+        st.write(file_details)
+
+        # PDFを画像に変換
+        images = pdf_to_images(temp_file_path)
+
+        # 画像を表示
+        for image in images:
+            st.image(image, use_column_width=True)
+
+        # 一時ファイルを削除
+        os.remove(temp_file_path)
+
+
+# 選択されたメニューに応じて、選択肢を表示
+if choice == "注文管理4":
+    st.sidebar.markdown("Select a submenu:")
+    submenu_choice = st.sidebar.selectbox("", submenu4)
+
+    # 選択されたサブメニューの情報を表示
+    if submenu_choice == "注文4検索0_品番_注番":
+        st.write('findings40()')
+    elif submenu_choice == "注文4追加1_日付":
+        st.write('addings41()')
+    elif submenu_choice == "受注データ表示":
+        st.write('show_data42()')
+    elif submenu_choice == "期間別請求書表示":
+        invoice_make43()
+    elif submenu_choice == "invoice表示":
+        invoice_show44()
 
 
 # streamlit run show_invoice.py
