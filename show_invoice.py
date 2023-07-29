@@ -1,18 +1,5 @@
 # streamlit run show_invoice.py
 
-# import sqlite3
-# import pandas as pd
-# import streamlit as st
-# from PIL import Image
-# from datetime import date
-# from reportlab.pdfbase.cidfonts import UnicodeCIDFont
-# import qrcode
-#
-# from reportlab.pdfgen import canvas
-# from reportlab.lib.pagesizes import portrait, A4
-# from reportlab.pdfbase import pdfmetrics
-# from reportlab.pdfbase.ttfonts import TTFont
-
 import sqlite3
 import pandas as pd
 import streamlit as st
@@ -34,10 +21,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 
 # import fitz  # PyMuPDFをインポート
 # import tempfile
-# import os
-
-
-
+import os
 
 def show_invoice43():
     # title表示する
@@ -126,41 +110,15 @@ def show_invoice43():
         # PDFを作成 # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
         today = date.today()
         today_str_cnv = today.strftime('%Y%m%d')
-        cv = canvas.Canvas(f'Invoice_{today_str_cnv}.pdf', pagesize=portrait(A4))
 
-        # # PDFを作成
-        # c = canvas.Canvas('output.pdf', pagesize=A4)
-        # c.setFont('CustomFont', 12)  # フォント名を指定
-        # c.drawString(100, 100, 'Hello, World!')
-        # c.save()
+        file_name = 'fInvoice_{today_str_cnv}.pdf'
+        cv = canvas.Canvas(file_name, pagesize=portrait(A4))
 
+        # 保存先のディレクトリパス
+        output_directory = "C:\\Users\\Invoice"
 
-
-        # 縦型A4のCanvasを準備
-        # cv = canvas.Canvas('temp_format00.pdf', pagesize=portrait(A4))
-        #
-        # # フォント登録
-        # pdfmetrics.registerFont(UnicodeCIDFont('HeiseiKakuGo-W5'))
-
-        # フォントサイズ定義
-        # font_size1 = 20
-        # font_size2 = 14
-        # cv.setFont('HeiseiKakuGo-W5', font_size2)
-
-        # # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
-        # today = date.today()
-        # today_str_cnv = today.strftime('%Y%m%d')
-        # cv = canvas.Canvas(f'Invoice_{today_str_cnv}.pdf', pagesize=portrait(A4))
-
-        # # フォント登録
-        # pdfmetrics.registerFont(UnicodeCIDFont('HeiseiKakuGo-W5'))
-        #
-        # # フォントファイルの絶対パスを指定
-        # font_file_path = '/path/to/font_file.ttf'
-        # # フォントを登録
-        # pdfmetrics.registerFont(TTFont('CustomFont', font_file_path))
-
-
+        # ファイルのフルパス
+        pdf_path = os.path.join(output_directory, file_name)
 
         # フォントサイズ定義
         font_size1 = 20
@@ -286,6 +244,6 @@ def show_invoice43():
 
         # Streamlitにファイルの保存を通知する
         st.write('保存ファイル')
-        # st.write(f"PDF file saved at: {pdf_path}")
+        st.write(f"PDF file saved at: {pdf_path}")
 
 show_invoice43()
