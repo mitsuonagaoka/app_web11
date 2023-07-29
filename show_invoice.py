@@ -111,7 +111,9 @@ def show_invoice43():
         today = date.today()
         today_str_cnv = today.strftime('%Y%m%d')
 
-        file_name = 'fInvoice_{today_str_cnv}.pdf'
+        st.write = today_str_cnv
+
+        file_name = f'Invoice_{today_str_cnv}.pdf'
         cv = canvas.Canvas(file_name, pagesize=portrait(A4))
 
         # 保存先のディレクトリパス
