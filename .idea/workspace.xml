@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5ea884dd-914e-4524-b889-09b04456504e" name="変更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/show_invoice.py" beforeDir="false" afterPath="$PROJECT_DIR$/show_invoice.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/show_invoice01.py" beforeDir="false" afterPath="$PROJECT_DIR$/show_invoice01.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,20 +31,20 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/marom/PycharmProjects/pythonProject1/app_web11",
+    "last_opened_file_path": "C:/Users/marom/PycharmProjects/pythonProject1/app_web11/show_invoice01.py",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\marom\PycharmProjects\pythonProject2\app_web12" />
       <recent name="C:\Users\marom\PycharmProjects\pythonProject1\app_web11" />
       <recent name="C:\Users\marom\PycharmProjects\pythonProject1" />
       <recent name="C:\Users\marom\PycharmProjects\pythonProject1\app_web10" />
       <recent name="C:\Users\marom\PycharmProjects\pythonProject4" />
-      <recent name="C:\Users\marom\PycharmProjects\pythonProject4\mitsu_web01" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.pdf_show02">
+  <component name="RunManager" selected="Python.excel_sqlite04">
     <configuration name="dash_sqlite00" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="app_web11" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -60,6 +58,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../pythonProject4/dash_sqlite00.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="excel_sqlite04" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="app_web11" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../pythonProject2/app_web12" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../pythonProject2/app_web12/excel_sqlite04.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -110,27 +129,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="panel_sqlite01" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="app_web11" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../pythonProject4" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../pythonProject4/panel_sqlite01.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="pdf_show02" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="app_web11" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -154,11 +152,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.excel_sqlite04" />
         <item itemvalue="Python.pdf_show02" />
         <item itemvalue="Python.panel_exe01" />
         <item itemvalue="Python.panel_exe00" />
         <item itemvalue="Python.dash_sqlite00" />
-        <item itemvalue="Python.panel_sqlite01" />
       </list>
     </recent_temporary>
   </component>
@@ -177,9 +175,39 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../../pythonProject2/app_web12/streamlit_app.py</url>
-          <line>19</line>
+          <url>file://$PROJECT_DIR$/show_invoice01.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../../pythonProject2/app_web12/excel_sqlite04.py</url>
+          <line>271</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../../pythonProject2/app_web12/excel_sqlite04.py</url>
+          <line>107</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../../pythonProject2/app_web12/excel_sqlite05.py</url>
+          <line>101</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../../pythonProject2/app_web12/excel_sqlite05.py</url>
+          <line>86</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../../pythonProject2/app_web12/streamlit_app.py</url>
+          <line>364</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../../pythonProject2/app_web12/excel_sqlite05.py</url>
+          <line>78</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
