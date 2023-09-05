@@ -1,9 +1,7 @@
 # streamlit run show_invoice03.py
 
-import os
 import sqlite3
 from datetime import date
-
 import pandas as pd
 import qrcode
 import streamlit as st
@@ -13,9 +11,6 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 
-# def create_pdf(file_path):
-# PDFを作成する関数
-# def create_pdf(file_path):      # invoice_make43()
 def show_invoice43():
     # title表示する
     st.title('月単位請求項目表示4')
@@ -34,8 +29,6 @@ def show_invoice43():
     end_date = st.date_input("終了日を選択してください")
 
     if st.button('実行'):
-        # global qd_会社id
-        # SQLクエリの作成と実行
         sql = """
             select t_出荷Data.品番, t_在庫Data.名称, t_在庫Data.単価, t_出荷Data.出荷数, t_出荷Data.出荷日, t_在庫Data.Tax, t_出荷Data.出荷金額
             FROM t_出荷Data INNER JOIN t_在庫Data
@@ -53,7 +46,6 @@ def show_invoice43():
         query_total = f"SELECT sum(出荷金額) FROM t_出荷Data WHERE 出荷日 BETWEEN '" \
                       f"{start_date.strftime('%Y/%m/%d')}' AND '{end_date.strftime('%Y/%m/%d')}'"
         dd_出荷合計 = conn.execute(query_total).fetchone()[0]
-        # st.write(f'出荷合計額: {dd_出荷合計:,}円')
 
         dd_請求金額 = int(dd_出荷合計) * 1.1
         dd_消費税額 = int(dd_出荷合計) * 0.1
@@ -90,8 +82,7 @@ def show_invoice43():
         img.show()
 
         ###### Invoice_issue を発行######################################################################
-        # PDFファイルの保存先ディレクトリ "C:\Users\marom\Invoice"
-        # pdf_directory = r"C:\Users\Invoice"
+        # PDFファイルの保存先ディレクトリ
         pdf_directory = r"C:\Users\marom\Invoice"
 
         # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
@@ -104,39 +95,11 @@ def show_invoice43():
         # PDFを作成する
         cv = canvas.Canvas(pdf_path, pagesize=portrait(A4))
 
-        # 以下でPDFファイルを作成する処理を記述する
-
-        # # PDFファイルを保存する
-        # cv.save()
-        #
-        # # Streamlitにファイルの保存を通知する
-        # st.write(f"PDF file saved at: {pdf_path}")
-
-
-        # cv = canvas.Canvas('temp_format00.pdf', pagesize=portrait(A4))
-
-        # # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
-        # today = date.today()
-        # today_str_cnv = today.strftime('%Y%m%d')
-        # cv = canvas.Canvas(f'Invoice_{today_str_cnv}.pdf', pagesize=portrait(A4))
-
-        # # フォント登録
-        # pdfmetrics.registerFont(UnicodeCIDFont('MSGothic'))
-
         # フォントサイズ定義
-        # font_size1 = 20
         font_size2 = 14
         # フォント登録
         pdfmetrics.registerFont(TTFont('MSGothic', 'C:\\Windows\\Fonts\\MSGothic.ttc'))
         cv.setFont('MSGothic', font_size2)
-
-        # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
-        # today = date.today()
-        # today_str_cnv = today.strftime('%Y%m%d')
-        # cv = canvas.Canvas(f'Invoice_{today_str_cnv}.pdf', pagesize=portrait(A4))
-
-        # # フォント登録
-        # pdfmetrics.registerFont(TTFont('MSGothic', 'C:\\Windows\\Fonts\\MSGothic.ttc'))
 
         # フォントサイズ定義
         font_size1 = 20
@@ -163,8 +126,6 @@ def show_invoice43():
         c = conn.cursor()
 
         # query_totalクエリを実行して、データフレームに変換 qd_会社id
-        # dd_会社ID = '1'
-        # Comid_sql = conn.execute('SELECT * FROM t_顧客Data WHERE 会社ID = ?', (dd_会社ID,)).fetchall()
         qd_会社id = '1'
         Comid_sql = conn.execute('SELECT * FROM t_顧客Data WHERE 会社ID = ?', (qd_会社id,)).fetchall()
 

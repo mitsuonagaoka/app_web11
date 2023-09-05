@@ -1,17 +1,9 @@
-streamlit
 sqlite3
-pandas
-
-datetime
-reportlab
-contextlib
-plotly
-base64
-qrcode
-pdf2image
-pytesseract
-
-requests
+pandas==2.1.0
+qrcode==7.4.2
+streamlit==1.26.0
+Pillow==10.0.0
+reportlab==4.0.4
 
 
 
