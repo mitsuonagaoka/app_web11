@@ -11,6 +11,8 @@ qrcode
 pdf2image
 pytesseract
 
+requests
+
 
 
 

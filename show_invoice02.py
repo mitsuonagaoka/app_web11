@@ -1,26 +1,29 @@
-# streamlit run show_invoice01.py
+# streamlit run show_invoice02.py
 
-import os
 import sqlite3
-from datetime import date
-
 import pandas as pd
-import qrcode
 import streamlit as st
 from PIL import Image
-from reportlab.lib.pagesizes import A4
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
+# import datetime
+from datetime import date
 from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import portrait, A4
+# from reportlab.lib.utils import ImageReader
+from reportlab.pdfbase import pdfmetrics
+# from reportlab.pdfbase.cidfonts import UnicodeCIDFont
+# from contextlib import closing
+# import plotly.express as px
+# import base64
+import qrcode
+# from pdf2image import convert_from_path
+from reportlab.pdfbase.ttfonts import TTFont
+# import pytesseract
 
-def create_pdf(file_path):
-# PDFを作成する関数
-# def create_pdf(file_path):      # invoice_make43()
-# def invoice_make43():
-    # Canvasオブジェクトを作成（A4サイズ）
-    cv = canvas.Canvas(file_path, pagesize=A4)
+# import fitz  # PyMuPDFをインポート
+# import tempfile
+import os
 
-    # ここにPDFの内容を追加するコードを記述
+def show_invoice43():
     # title表示する
     st.title('月単位請求項目表示4')
     st.subheader('月単位請求を抽出します。')
@@ -38,15 +41,17 @@ def create_pdf(file_path):
     end_date = st.date_input("終了日を選択してください")
 
     if st.button('実行'):
-        # global qd_会社id
+        global qd_会社id
         # SQLクエリの作成と実行
         sql = """
-                select t_出荷Data.品番, t_在庫Data.名称, t_在庫Data.単価, t_出荷Data.出荷数, t_出荷Data.出荷日, t_在庫Data.Tax, t_出荷Data.出荷金額
-                FROM t_出荷Data INNER JOIN t_在庫Data
-                ON t_出荷Data.品番 = t_在庫Data.品番
-                WHERE t_出荷Data.出荷日 BETWEEN ? AND ?
-            """
+            select t_出荷Data.品番, t_在庫Data.名称, t_在庫Data.単価, t_出荷Data.出荷数, t_出荷Data.出荷日, t_在庫Data.Tax, t_出荷Data.出荷金額
+            FROM t_出荷Data INNER JOIN t_在庫Data
+            ON t_出荷Data.品番 = t_在庫Data.品番
+            WHERE t_出荷Data.出荷日 BETWEEN ? AND ?
+        """
         c.execute(sql, (start_date.strftime('%Y/%m/%d'), end_date.strftime('%Y/%m/%d')))
+
+        # SELECT COUNT(*) FROM t_出荷Data
 
         # 結果をデータフレームに変換して表示
         df = pd.DataFrame(c.fetchall(), columns=['品番', '名称', '単価', '出荷数', '出荷日', 'Tax', '出荷金額'])
@@ -60,6 +65,9 @@ def create_pdf(file_path):
 
         dd_請求金額 = int(dd_出荷合計) * 1.1
         dd_消費税額 = int(dd_出荷合計) * 0.1
+
+        # st.write(f'10%選択しました。消費税額：{int(dd_消費税額):,} 円です。')
+        # st.write(f'10%選択しました。請求金額：{int(dd_請求金額):,} 円です。')
 
         # カーソルを作成
         cursor = conn.cursor()
@@ -98,6 +106,21 @@ def create_pdf(file_path):
 
         # フォントを登録
         pdfmetrics.registerFont(TTFont('MSGothic', font_file_path))
+
+        # PDFを作成 # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
+        today = date.today()
+        today_str_cnv = today.strftime('%Y%m%d')
+
+        # st.write = today_str_cnv
+
+        file_name = f'Invoice_{today_str_cnv}.pdf'
+        cv = canvas.Canvas(file_name, pagesize=portrait(A4))
+
+        # 保存先のディレクトリパス
+        output_directory = "C:\\Users\\Invoice"
+
+        # ファイルのフルパス
+        pdf_path = os.path.join(output_directory, file_name)
 
         # フォントサイズ定義
         font_size1 = 20
@@ -152,6 +175,7 @@ def create_pdf(file_path):
         cv.line(95, 562, 520, 562)
         cv.line(45, 755, 560, 755)
 
+        # cv.setFont('HeiseiKakuGo-W5', font_size3)
         cv.setFont('MSGothic', font_size3)
 
         # ヘッター欄
@@ -217,22 +241,23 @@ def create_pdf(file_path):
         ylist = (40, 60, 80, 100, 120)
         cv.grid(xlist, ylist)
 
-        # Canvasを保存してファイルを作成
+        # PDFファイルを保存する
         cv.save()
 
-    # 保存先のディレクトリパス
-    output_directory = "C:\\Users\\marom\\Invoice"
+        # 保存先のディレクトリパス
+        output_directory = "C:\\Users\\Invoice"
+        # # 保存するファイル名
+        # file_name = "invoice.pdf"
 
-    # PDFを作成 # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
-    today = date.today()
-    today_str_cnv = today.strftime('%Y%m%d')
-    file_name = f'Invoice_{today_str_cnv}.pdf'
+        # ファイルのフルパス
+        file_path = os.path.join(output_directory, file_name)
+        # PDFを作成して保存
+        create_pdf(file_path)
 
-    # ファイルのフルパス
-    file_path = os.path.join(output_directory, file_name)
+        # Streamlitにファイルの保存を通知する
+        st.write(file_name)
+        # st.write(f"PDF file saved at:file_name")
 
-    # PDFを作成して保存
-    create_pdf(file_path)
-# invoice_make43()
+show_invoice43()
 
-# streamlit run show_invoice01.py
+# streamlit run show_invoice.py

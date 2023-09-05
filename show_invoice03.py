@@ -1,4 +1,4 @@
-# streamlit run show_invoice01.py
+# streamlit run show_invoice03.py
 
 import os
 import sqlite3
@@ -8,19 +8,15 @@ import pandas as pd
 import qrcode
 import streamlit as st
 from PIL import Image
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import portrait, A4
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 
-def create_pdf(file_path):
+# def create_pdf(file_path):
 # PDFを作成する関数
 # def create_pdf(file_path):      # invoice_make43()
-# def invoice_make43():
-    # Canvasオブジェクトを作成（A4サイズ）
-    cv = canvas.Canvas(file_path, pagesize=A4)
-
-    # ここにPDFの内容を追加するコードを記述
+def show_invoice43():
     # title表示する
     st.title('月単位請求項目表示4')
     st.subheader('月単位請求を抽出します。')
@@ -41,15 +37,16 @@ def create_pdf(file_path):
         # global qd_会社id
         # SQLクエリの作成と実行
         sql = """
-                select t_出荷Data.品番, t_在庫Data.名称, t_在庫Data.単価, t_出荷Data.出荷数, t_出荷Data.出荷日, t_在庫Data.Tax, t_出荷Data.出荷金額
-                FROM t_出荷Data INNER JOIN t_在庫Data
-                ON t_出荷Data.品番 = t_在庫Data.品番
-                WHERE t_出荷Data.出荷日 BETWEEN ? AND ?
-            """
+            select t_出荷Data.品番, t_在庫Data.名称, t_在庫Data.単価, t_出荷Data.出荷数, t_出荷Data.出荷日, t_在庫Data.Tax, t_出荷Data.出荷金額
+            FROM t_出荷Data INNER JOIN t_在庫Data
+            ON t_出荷Data.品番 = t_在庫Data.品番
+            WHERE t_出荷Data.出荷日 BETWEEN ? AND ?
+        """
         c.execute(sql, (start_date.strftime('%Y/%m/%d'), end_date.strftime('%Y/%m/%d')))
 
         # 結果をデータフレームに変換して表示
-        df = pd.DataFrame(c.fetchall(), columns=['品番', '名称', '単価', '出荷数', '出荷日', 'Tax', '出荷金額'])
+        df = pd.DataFrame(c.fetchall(),
+                          columns=['品番', '名称', '単価', '出荷数', '出荷日', 'Tax', '出荷金額'])
         st.write(df)
 
         # query_totalクエリを実行して、データフレームに変換
@@ -93,22 +90,67 @@ def create_pdf(file_path):
         img.show()
 
         ###### Invoice_issue を発行######################################################################
-        # MSGothic フォントの絶対パスを指定
-        font_file_path = 'C:\\Windows\\Fonts\\msgothic.ttc'  # または 'C:\\Windows\\Fonts\\msgothic.ttf'
+        # PDFファイルの保存先ディレクトリ "C:\Users\marom\Invoice"
+        # pdf_directory = r"C:\Users\Invoice"
+        pdf_directory = r"C:\Users\marom\Invoice"
 
-        # フォントを登録
-        pdfmetrics.registerFont(TTFont('MSGothic', font_file_path))
+        # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
+        today = date.today()
+        today_str_cnv = today.strftime('%Y%m%d')
+
+        # PDFファイルのパス
+        pdf_path = f"{pdf_directory}\\Invoice_{today_str_cnv}.pdf"
+
+        # PDFを作成する
+        cv = canvas.Canvas(pdf_path, pagesize=portrait(A4))
+
+        # 以下でPDFファイルを作成する処理を記述する
+
+        # # PDFファイルを保存する
+        # cv.save()
+        #
+        # # Streamlitにファイルの保存を通知する
+        # st.write(f"PDF file saved at: {pdf_path}")
+
+
+        # cv = canvas.Canvas('temp_format00.pdf', pagesize=portrait(A4))
+
+        # # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
+        # today = date.today()
+        # today_str_cnv = today.strftime('%Y%m%d')
+        # cv = canvas.Canvas(f'Invoice_{today_str_cnv}.pdf', pagesize=portrait(A4))
+
+        # # フォント登録
+        # pdfmetrics.registerFont(UnicodeCIDFont('MSGothic'))
+
+        # フォントサイズ定義
+        # font_size1 = 20
+        font_size2 = 14
+        # フォント登録
+        pdfmetrics.registerFont(TTFont('MSGothic', 'C:\\Windows\\Fonts\\MSGothic.ttc'))
+        cv.setFont('MSGothic', font_size2)
+
+        # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
+        # today = date.today()
+        # today_str_cnv = today.strftime('%Y%m%d')
+        # cv = canvas.Canvas(f'Invoice_{today_str_cnv}.pdf', pagesize=portrait(A4))
+
+        # # フォント登録
+        # pdfmetrics.registerFont(TTFont('MSGothic', 'C:\\Windows\\Fonts\\MSGothic.ttc'))
 
         # フォントサイズ定義
         font_size1 = 20
         font_size2 = 14
         font_size3 = 10
+        # cv.setFont('HeiseiKakuGo-W5', font_size2)
         cv.setFont('MSGothic', font_size2)
 
         # 表題欄 (x座標, y座標, 文字)を指定
+        # cv.setFont('HeiseiKakuGo-W5', font_size1)
         cv.setFont('MSGothic', font_size1)
         cv.drawString(50, 760, 'Invoice(期間別[月/日/任意]請求書)')
 
+        # cv.setFont('HeiseiKakuGo-W5', font_size2)
         cv.setFont('MSGothic', font_size2)
         cv.drawString(450, 760, f'Inv- {today_str_cnv}')
 
@@ -120,6 +162,9 @@ def create_pdf(file_path):
         conn = sqlite3.connect(db_name)
         c = conn.cursor()
 
+        # query_totalクエリを実行して、データフレームに変換 qd_会社id
+        # dd_会社ID = '1'
+        # Comid_sql = conn.execute('SELECT * FROM t_顧客Data WHERE 会社ID = ?', (dd_会社ID,)).fetchall()
         qd_会社id = '1'
         Comid_sql = conn.execute('SELECT * FROM t_顧客Data WHERE 会社ID = ?', (qd_会社id,)).fetchall()
 
@@ -152,6 +197,7 @@ def create_pdf(file_path):
         cv.line(95, 562, 520, 562)
         cv.line(45, 755, 560, 755)
 
+        # cv.setFont('HeiseiKakuGo-W5', font_size3)
         cv.setFont('MSGothic', font_size3)
 
         # ヘッター欄
@@ -217,22 +263,13 @@ def create_pdf(file_path):
         ylist = (40, 60, 80, 100, 120)
         cv.grid(xlist, ylist)
 
-        # Canvasを保存してファイルを作成
+        # PDFファイルを保存
         cv.save()
 
-    # 保存先のディレクトリパス
-    output_directory = "C:\\Users\\marom\\Invoice"
+        # Streamlitにファイルの保存を通知する
+        st.write(f"PDF file saved at: {pdf_path}")
 
-    # PDFを作成 # 日付をYYYYMMDD形式に変換し、ファイル名に使用する
-    today = date.today()
-    today_str_cnv = today.strftime('%Y%m%d')
-    file_name = f'Invoice_{today_str_cnv}.pdf'
 
-    # ファイルのフルパス
-    file_path = os.path.join(output_directory, file_name)
+show_invoice43()
 
-    # PDFを作成して保存
-    create_pdf(file_path)
-# invoice_make43()
-
-# streamlit run show_invoice01.py
+# streamlit run show_invoice03.py

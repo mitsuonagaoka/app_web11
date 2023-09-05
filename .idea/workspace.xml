@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ea884dd-914e-4524-b889-09b04456504e" name="変更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,6 +16,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -29,23 +31,24 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/marom/PycharmProjects/pythonProject1/app_web11/show_invoice01.py",
+    "last_opened_file_path": "C:/Users/marom/PycharmProjects/pythonProject1",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\marom\PycharmProjects\pythonProject5\mame_web01" />
+      <recent name="C:\Users\marom\PycharmProjects\pythonProject7" />
+      <recent name="C:\Users\marom\PycharmProjects\pythonProject6\mitsu_web06" />
+      <recent name="C:\Users\marom\PycharmProjects\pythonProject6\mitsu_web06\templates" />
       <recent name="C:\Users\marom\PycharmProjects\pythonProject2\app_web12" />
-      <recent name="C:\Users\marom\PycharmProjects\pythonProject1\app_web11" />
-      <recent name="C:\Users\marom\PycharmProjects\pythonProject1" />
-      <recent name="C:\Users\marom\PycharmProjects\pythonProject1\app_web10" />
-      <recent name="C:\Users\marom\PycharmProjects\pythonProject4" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.excel_sqlite04">
-    <configuration name="dash_sqlite00" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.psg_asset_manage06">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="app_web11" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -53,11 +56,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../pythonProject4" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../pythonProject7" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../pythonProject4/dash_sqlite00.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../pythonProject7/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -66,7 +69,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="excel_sqlite04" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="psg_asset_manage03" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="app_web11" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -74,11 +77,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../pythonProject2/app_web12" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../pythonProject5/mame_web01" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../pythonProject2/app_web12/excel_sqlite04.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../pythonProject5/mame_web01/psg_asset_manage03.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -87,7 +90,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="panel_exe00" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="psg_asset_manage04" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="app_web11" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -95,11 +98,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../pythonProject4" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../pythonProject5/mame_web01" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../pythonProject4/panel_exe00.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../pythonProject5/mame_web01/psg_asset_manage04.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -108,7 +111,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="panel_exe01" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="psg_asset_manage05" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="app_web11" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -116,11 +119,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../pythonProject4" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../pythonProject5/mame_web01" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../pythonProject4/panel_exe01.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../pythonProject5/mame_web01/psg_asset_manage05.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -129,7 +132,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pdf_show02" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="psg_asset_manage06" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="app_web11" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -137,11 +140,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../pythonProject4/mitsu_web01" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../pythonProject5/mame_web01" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../pythonProject4/mitsu_web01/pdf_show02.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../pythonProject5/mame_web01/psg_asset_manage06.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -152,11 +155,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.excel_sqlite04" />
-        <item itemvalue="Python.pdf_show02" />
-        <item itemvalue="Python.panel_exe01" />
-        <item itemvalue="Python.panel_exe00" />
-        <item itemvalue="Python.dash_sqlite00" />
+        <item itemvalue="Python.psg_asset_manage06" />
+        <item itemvalue="Python.psg_asset_manage05" />
+        <item itemvalue="Python.psg_asset_manage04" />
+        <item itemvalue="Python.psg_asset_manage03" />
+        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -208,6 +211,16 @@
           <url>file://$PROJECT_DIR$/../../pythonProject2/app_web12/excel_sqlite05.py</url>
           <line>78</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../../pythonProject5/mame_web01/asset_manage01.py</url>
+          <line>81</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../../pythonProject5/mame_web01/psg_asset_manage05.py</url>
+          <line>315</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
